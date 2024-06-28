@@ -4,10 +4,7 @@ import { Ingredient } from '@/scripts/data';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import {
-  ChevronDownIcon,
   EllipsisHorizontalIcon,
-  FunnelIcon,
-  HomeIcon,
   MagnifyingGlassIcon,
   PlusIcon,
 } from '@heroicons/react/24/outline';

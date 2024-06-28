@@ -71,6 +71,7 @@ const OrderList = () => {
             <div className="mt-6 gap-4 space-y-4 sm:mt-0 sm:flex sm:items-center sm:justify-end sm:space-y-0">
               <SelectionSearch
                 items={['Hào', 'Nhật', 'Bang', 'Clie', 'Xin', 'Lili', 'Lehend']}
+                onSelect={() => {}}
               />
             </div>
           </div>
