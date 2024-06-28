@@ -12,7 +12,6 @@ import {
   PlusIcon,
 } from '@heroicons/react/24/outline';
 import Table from '@/components/Table';
-import { render } from 'react-dom';
 import AddProductModal from '@/components/Modal/Product';
 import { useState } from 'react';
 
