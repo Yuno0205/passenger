@@ -1,0 +1,90 @@
+[
+    {
+        "id": 1,
+        "name": "Arabica Coffee Beans",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 100,
+        "unit": "kg",
+        "category": "Coffee Beans",
+        "description": "High-quality Arabica coffee beans, medium roast.",
+        "last_modified": "2024-06-14",
+        "status": "In Stock"
+    },
+    {
+        "id": 2,
+        "name": "Robusta Coffee Beans",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 80,
+        "unit": "kg",
+        "category": "Coffee Beans",
+        "description": "Strong-flavored Robusta coffee beans.",
+        "last_modified": "2024-06-14",
+        "status": "In Stock"
+    },
+    {
+        "id": 3,
+        "name": "Condensed Milk",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 50,
+        "unit": "cans",
+        "category": "Dairy",
+        "description": "Sweetened condensed milk, used for making coffee with milk.",
+        "last_modified": "2024-06-14",
+        "status": "In Stock"
+    },
+    {
+        "id": 4,
+        "name": "White Sugar",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 200,
+        "unit": "kg",
+        "category": "Sweeteners",
+        "description": "Refined white sugar, used for sweetening beverages.",
+        "last_modified": "2024-06-14",
+        "status": "In Stock"
+    },
+    {
+        "id": 5,
+        "name": "Green Tea",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 0,
+        "unit": "kg",
+        "category": "Tea",
+        "description": "High-quality green tea leaves, used for brewing tea.",
+        "last_modified": "2024-06-14",
+        "status": "Out of stock"
+    },
+    {
+        "id": 6,
+        "name": "Cocoa Powder",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 40,
+        "unit": "kg",
+        "category": "Powder",
+        "description": "Pure cocoa powder, used for making drinks.",
+        "last_modified": "2024-06-14",
+        "status": "In Stock"
+    },
+    {
+        "id": 7,
+        "name": "Caramel Syrup",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 2,
+        "unit": "bottles",
+        "category": "Syrup",
+        "description": "Sweet caramel syrup, used for flavoring drinks.",
+        "last_modified": "2024-06-14",
+        "status": "Low stock"
+    },
+    {
+        "id": 8,
+        "name": "Whipping Cream",
+        "image" : "https://food-images.files.bbci.co.uk/food/recipes/the_perfect_mocha_coffee_29100_16x9.jpg",
+        "stock": 0,
+        "unit": "liters",
+        "category": "Dairy",
+        "description": "Rich whipping cream, used for garnishing and drinks.",
+        "last_modified": "2024-06-14",
+        "status": "Out of stock"
+    }
+]
