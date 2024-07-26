@@ -2,9 +2,10 @@
 import { useState } from 'react';
 import TableRow from '@/components/TableRow';
 import { CheckIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { lusitana } from '@/app/ui/fonts';
-import TextField from '@/components/TextField';
+import { lusitana } from '@/app/styles/fonts';
+import TextField from '@/components/TextBox';
 import Button from '@/components/Button';
+import Breadcrumb from '@/components/BreadCrumb';
 
 const CheckingInventory = () => {
   const [rows, setRows] = useState<{ id: number }[]>([{ id: 0 }]);
@@ -23,9 +24,7 @@ const CheckingInventory = () => {
     <div className="container mx-auto w-full p-4">
       <div className="w-full p-4">
         <div className="mb-16 flex w-full items-center justify-between">
-          <h1 className={`${lusitana.className} text-2xl`}>
-            Inventory checking
-          </h1>
+          <Breadcrumb />
         </div>
         <div className="mt-4 flex border-b-2 border-gray-200 pb-2">
           <div className="w-2/6 border-x-2 text-center text-sm">INGREDIENT</div>

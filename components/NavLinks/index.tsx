@@ -6,6 +6,8 @@ import {
   SwatchIcon,
   BuildingStorefrontIcon,
   ChevronDownIcon,
+  UserGroupIcon,
+  TableCellsIcon,
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -28,43 +30,38 @@ const links: Link[] = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
   {
     name: 'Inventory',
-    href: '/',
+    href: '/dashboard/inventory',
     icon: BuildingStorefrontIcon,
     children: [
-      {
-        childName: 'History',
-        childLink: '/dashboard/inventory/history',
-      },
-      {
-        childName: 'Ingredient',
-        childLink: '/dashboard/inventory',
-      },
+      { childName: 'History', childLink: '/dashboard/inventory/history' },
+      { childName: 'Ingredient', childLink: '/dashboard/inventory' },
       {
         childName: 'Add ingredient',
         childLink: '/dashboard/inventory/ingredient',
       },
-      {
-        childName: 'Checking',
-        childLink: '/dashboard/inventory/checking',
-      },
+      { childName: 'Checking', childLink: '/dashboard/inventory/checking' },
     ],
   },
-  { name: 'Categories', href: '/dashboard', icon: SwatchIcon },
+  {
+    name: 'Categories',
+    href: '/dashboard/categories',
+    icon: SwatchIcon,
+    children: [
+      { childName: 'Categories', childLink: '/dashboard/categories' },
+      { childName: 'Unit', childLink: '/dashboard/categories/unit' },
+    ],
+  },
   {
     name: 'Schedule',
     href: '/dashboard/schedule',
     icon: CalendarDaysIcon,
     children: [
-      {
-        childName: 'Vacants',
-        childLink: '/dashboard/schedule',
-      },
-      {
-        childName: 'Shifts',
-        childLink: '/dashboard/schedule/shifts',
-      },
+      { childName: 'Vacants', childLink: '/dashboard/schedule' },
+      { childName: 'Shifts', childLink: '/dashboard/schedule/shifts' },
     ],
   },
+  { name: 'User', href: '/dashboard/user', icon: UserGroupIcon },
+  { name: 'Unit', href: '/dashboard/unit', icon: TableCellsIcon },
 ];
 
 export default function NavLinks() {
@@ -81,42 +78,42 @@ export default function NavLinks() {
   };
 
   return (
-    <>
+    <nav className="flex flex-col space-y-2">
       {links.map((link, index) => {
         const LinkIcon = link.icon;
         const isSubmenuOpen = openSubmenus[index];
+        const isActive =
+          pathname === link.href ||
+          (link.children && pathname.startsWith(link.href));
 
         if (link.children) {
           return (
-            <div key={index}>
+            <div key={index} className="flex flex-col space-y-2">
               <div
                 onClick={() => toggleSubmenu(index)}
                 className={clsx(
-                  'flex h-[48px] grow cursor-pointer items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium transition-all hover:bg-violet-100 hover:text-primary-500 md:flex-none md:justify-start md:p-2 md:px-3',
+                  'flex cursor-pointer items-center justify-between rounded-md p-3 text-sm font-medium transition-all hover:bg-indigo-100 hover:text-indigo-600',
                   {
-                    'bg-violet-100 text-primary-500': pathname === link.href,
+                    'bg-indigo-100 text-indigo-600': isActive,
                   },
                 )}
               >
-                <div className="flex w-full justify-between">
-                  <div className="flex items-center gap-2">
-                    <LinkIcon className="w-6" />
-                    <p className="hidden md:block">{link.name}</p>
-                  </div>
-                  <ChevronDownIcon className="w-5" />
+                <div className="flex items-center gap-2">
+                  <LinkIcon className="w-6" />
+                  <p className="hidden md:block">{link.name}</p>
                 </div>
+                <ChevronDownIcon className="w-5" />
               </div>
               {isSubmenuOpen && (
-                <ul className="ml-4">
+                <ul className="ml-4 flex flex-col space-y-1">
                   {link.children.map((child, childIndex) => (
                     <li key={childIndex}>
                       <Link
                         href={child.childLink}
                         className={clsx(
-                          'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-violet-100 hover:text-primary-500 md:flex-none md:justify-start md:p-2 md:px-8',
+                          'flex items-center rounded-md p-3 text-sm font-medium hover:text-indigo-600',
                           {
-                            'bg-violet-100 text-primary-500':
-                              pathname === child.childLink,
+                            'text-indigo-600': pathname === child.childLink,
                           },
                         )}
                       >
@@ -136,21 +133,19 @@ export default function NavLinks() {
             key={index}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-violet-100 hover:text-primary-500 md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex items-center justify-between rounded-md p-3 text-sm font-medium transition-all hover:bg-indigo-100 hover:text-indigo-600',
               {
-                'bg-violet-100 text-primary-500': pathname === link.href,
+                'bg-indigo-100 text-indigo-600': pathname === link.href,
               },
             )}
           >
-            <div className="flex w-full justify-between">
-              <div className="flex items-center gap-2">
-                <LinkIcon className="w-6" />
-                <p className="hidden md:block">{link.name}</p>
-              </div>
+            <div className="flex items-center gap-2">
+              <LinkIcon className="w-6" />
+              <p className="hidden md:block">{link.name}</p>
             </div>
           </Link>
         );
       })}
-    </>
+    </nav>
   );
 }

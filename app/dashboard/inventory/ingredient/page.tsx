@@ -1,170 +1,172 @@
 'use client';
-import { useState, ChangeEvent, FormEvent } from 'react';
+import Breadcrumb from '@/components/BreadCrumb';
+import Button from '@/components/Button';
+import Dropdown from '@/components/Dropdown';
+import TextBox from '@/components/TextBox';
+import InternalTextBox from '@/components/TextBox';
+import { categoriesData, unitData } from '@/scripts/data';
+import {
+  ArrowUpTrayIcon,
+  PlusIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import React, { useState } from 'react';
 
-interface FormData {
-  name: string;
-  category: string;
-  unit: string;
-  inStock: number;
-  lowStock: number;
-  description: string;
-  image: File | null;
-}
+const CategoryForm: React.FC = () => {
+  const [image, setImage] = useState<string | null>(null);
 
-const AddProduct: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-
-    category: '',
-    unit: '',
-    inStock: 0,
-    lowStock: 0,
-    description: '',
-    image: null,
-  });
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]:
-        name === 'image' ? (e.target as HTMLInputElement).files![0] : value,
-    });
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
-  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: checked,
-    });
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+  const handleRemoveImage = () => {
+    setImage(null);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="mb-4 text-2xl font-bold">Add Product</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
+    <div className="mx-auto max-w-full rounded bg-white p-6">
+      <h1 className="mb-10 text-xl font-bold">
+        <Breadcrumb />
+      </h1>
 
-          <div>
-            <label
-              htmlFor="category"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Category
-            </label>
-            <input
-              type="text"
-              name="category"
-              id="category"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              value={formData.category}
-              onChange={handleChange}
-            />
-          </div>
+      <div className="mb-5 flex">
+        <label
+          className="block min-w-[120px] text-sm font-bold text-gray-700"
+          htmlFor="ingredientname"
+        >
+          Ingredient name
+        </label>
+        <div className="ml-20 flex-1">
+          <TextBox placeholder="Enter ingredient" />
+        </div>
+      </div>
 
-          <div>
-            <label
-              htmlFor="inStock"
-              className="block text-sm font-medium text-gray-700"
-            >
-              In Stock
-            </label>
-            <input
-              type="number"
-              name="inStock"
-              id="inStock"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              value={formData.inStock}
-              onChange={handleChange}
-            />
-          </div>
+      <div className="mb-5 flex">
+        <label
+          className="block min-w-[120px] text-sm font-bold text-gray-700"
+          htmlFor="description"
+        >
+          Description
+        </label>
+        <div className="ml-20 flex-1">
+          <textarea
+            id="description"
+            className="h-32 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:shadow-outline focus:outline-none"
+            placeholder="Write a short description"
+          />
+        </div>
+      </div>
 
-          <div>
-            <label
-              htmlFor="lowStock"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Low Stock
-            </label>
-            <input
-              type="number"
-              name="lowStock"
-              id="lowStock"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              value={formData.lowStock}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="col-span-2">
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Description
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              rows={4}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
-          </div>
-
-          <div className="col-span-2">
-            <label
-              htmlFor="image"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Product Image
-            </label>
+      <div className="mb-5 flex">
+        <label
+          className="block min-w-[120px] text-sm font-bold text-gray-700"
+          htmlFor="infoLink"
+        >
+          Ingredient Image
+        </label>
+        <div className="relative ml-20 flex-1">
+          <div className="block w-full cursor-pointer appearance-none rounded border border-dashed bg-gray-50 px-4 py-4">
             <input
               type="file"
-              name="image"
-              id="image"
-              className="mt-1 block w-full"
-              onChange={handleChange}
+              id="infoLink"
+              className="absolute inset-0 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
+              onChange={handleFileChange}
+            />
+            <div className="flex flex-col items-center justify-center space-y-3">
+              <span className="border-stroke dark:border-strokedark dark:bg-boxdark flex h-10 w-10 items-center justify-center rounded-full border bg-white">
+                <ArrowUpTrayIcon className="w-5" />
+              </span>
+              <p className="text-sm font-medium">
+                <span className="text-primary">Click to upload</span>
+                or drag and drop
+              </p>
+              <p className="mt-1.5 text-sm font-medium">SVG, PNG, JPG or GIF</p>
+            </div>
+            {image && (
+              <div className="relative mt-4">
+                <img
+                  src={image}
+                  alt="Selected"
+                  className="h-auto w-full rounded"
+                />
+                <button
+                  onClick={handleRemoveImage}
+                  className="absolute right-2 top-2 rounded-full bg-red-500 p-2 text-white hover:bg-red-600"
+                >
+                  <XMarkIcon className="h-5 w-5" />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="my-10 flex gap-[200px]">
+        <div className="flex w-1/2">
+          <label className="block min-w-[120px] text-sm font-bold text-gray-700">
+            Category
+          </label>
+          <div className="ml-20 flex-1">
+            <Dropdown
+              onSelect={() => {}}
+              options={categoriesData.map((cate) => cate.name)}
+              className="w-full"
             />
           </div>
         </div>
+        <div className="flex w-1/2 justify-between">
+          <label className="block min-w-[120px] text-sm font-bold text-gray-700">
+            Unit
+          </label>
+          <div className="flex-1">
+            <Dropdown
+              onSelect={() => {}}
+              options={unitData.map((unitData) => unitData.unitName)}
+              className="w-full"
+            />
+          </div>
+        </div>
+      </div>
 
-        <button
-          type="submit"
-          className="mt-4 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
-          Add Product
-        </button>
-      </form>
+      <div className="my-10 flex gap-[200px]">
+        <div className="flex w-1/2">
+          <label
+            className="block min-w-[120px] text-sm font-bold text-gray-700"
+            htmlFor="ingredientname"
+          >
+            Stock
+          </label>
+          <div className="ml-20 flex-1">
+            <TextBox />
+          </div>
+        </div>
+        <div className="flex w-1/2 justify-between">
+          <label
+            className="block min-w-[120px] text-sm font-bold text-gray-700"
+            htmlFor="ingredientname"
+          >
+            Low stock
+          </label>
+          <div className="flex-1">
+            <TextBox />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex justify-end">
+        <Button className="gap-2" disabled>
+          Add Ingredient <PlusIcon className="w-5" />
+        </Button>
+      </div>
     </div>
   );
 };
 
-export default AddProduct;
+export default CategoryForm;
