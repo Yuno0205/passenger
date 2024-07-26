@@ -1,19 +1,18 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
-// import AddIngredientForm from '@/components/AddIngredientForm';
 import InventoryList from '@/components/Inventory/InventoryList/index';
-import data from '@/scripts/dataFake/inventory.json';
-import { lusitana } from '@/app/ui/fonts';
-import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
-import { Ingredient } from '@/scripts/data';
+import { ingredientData } from '@/scripts/data';
+import { lusitana } from '@/app/styles/fonts';
+import { Ingredient } from '@/types';
+import Breadcrumb from '@/components/BreadCrumb';
 
 const InventoryPage: React.FC = () => {
   const [inventory, setInventory] = useState<Ingredient[]>([]);
 
   useEffect(() => {
     // Load hardcoded inventory data
-    setInventory(data);
+    setInventory(ingredientData);
   }, []);
 
   // const handleAddIngredient = (ingredient: Ingredient) => {
@@ -23,10 +22,10 @@ const InventoryPage: React.FC = () => {
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
-        <h1 className={`${lusitana.className} text-2xl`}>Inventory</h1>
+        <Breadcrumb />
       </div>
 
-      <Suspense fallback={<InvoicesTableSkeleton />}>
+      <Suspense fallback={<div>Loading ...</div>}>
         <InventoryList inventory={inventory} />
       </Suspense>
     </div>

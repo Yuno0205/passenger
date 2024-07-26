@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { lusitana } from '@/app/ui/fonts';
+import { lusitana } from '@/app/styles/fonts';
 import ShiftItem from '@/components/TimeFrame';
 import SimpleToggle from '@/components/Toogle';
 import { PlusIcon } from '@heroicons/react/24/outline';
@@ -34,7 +34,7 @@ const Schedule = () => {
                 <span className="mr-2 ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
                   Available
                 </span>
-                <SimpleToggle size="large" onChange={() => {}} />
+                <SimpleToggle />
               </label>
             </div>
             <div className="flex flex-col gap-4">

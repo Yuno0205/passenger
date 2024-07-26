@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SelectionSearch from '../SelectionSearch';
-import TextField from '../TextField';
-import data from '@/scripts/dataFake/inventory.json';
+import TextField from '../TextBox';
+import { ingredientData } from '@/scripts/data';
 import Image from 'next/image';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -13,7 +13,7 @@ type TableRowProps = {
 const TableRow = ({ id, onDelete }: TableRowProps) => {
   const [selectedItem, setSelectedItem] = useState<any>(null);
 
-  const filteredData = data.filter((item) => item.stock > 0);
+  const filteredData = ingredientData.filter((item) => item.stock > 0);
 
   //   const handleSelection = (itemName: string) => {
   //     const item = data.find(
@@ -57,7 +57,7 @@ const TableRow = ({ id, onDelete }: TableRowProps) => {
         <span>{selectedItem && selectedItem.stock}</span>
       </div>
       <div className="flex w-1/6 items-center border-r-2 p-2 text-center">
-        <TextField type="number" className="mb-0" />
+        <TextField className="mb-0" />
       </div>
       <div className="flex w-1/6 items-center justify-center p-2">
         <button onClick={() => onDelete(id)} className="text-red-500">

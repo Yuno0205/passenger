@@ -1,33 +1,38 @@
 import clsx from 'clsx';
+// import { motion } from 'framer-motion';
 
-type TShiftItem = {
+interface ShiftItemProps {
   type: 'morning' | 'evening' | 'custom';
-};
-const ShiftItem = ({ type }: TShiftItem) => {
+  customTime?: string;
+  onDoubleClick: () => void;
+}
+
+const ShiftItem = ({ type, customTime, onDoubleClick }: ShiftItemProps) => {
   return (
     <div
       className={clsx(
-        'flex h-1/2 w-full items-center justify-between rounded-full px-2 text-xs',
+        'flex h-full w-full cursor-pointer items-center justify-between rounded-full px-2 text-xs',
         type === 'morning'
           ? 'bg-green-100'
           : type === 'evening'
             ? 'bg-orange-100'
             : 'bg-sky-100',
       )}
+      onDoubleClick={onDoubleClick}
     >
       <span className="font-bold">
         {type === 'morning'
-          ? '🟢 Moring'
+          ? '🟢 Morning'
           : type === 'evening'
             ? '🟠 Evening'
             : '🔵 Custom'}
       </span>
       <span>
         {type === 'morning'
-          ? '8H - 15H30'
+          ? '9H - 15H30'
           : type === 'evening'
             ? '15H - 23H'
-            : '??H - ??H'}
+            : `${customTime?.replace(/:00/g, 'H')}`}
       </span>
     </div>
   );
