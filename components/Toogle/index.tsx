@@ -18,10 +18,14 @@ const SwitchToggle = () => {
             onChange={toggleSwitch}
           />
           <div
-            className={`${isActive ? 'bg-blue-500' : 'bg-gray-400'} relative h-7 w-[50px] rounded-full`}
+            className={`${
+              isActive ? 'bg-blue-500' : 'bg-gray-400'
+            } relative h-7 w-[50px] rounded-full`}
           >
             <div
-              className={`${isActive ? 'translate-x-5' : 'translate-x-0'} absolute left-1 top-1 h-5 w-5 transform rounded-full bg-white shadow-md transition`}
+              className={`${
+                isActive ? 'translate-x-5' : 'translate-x-0'
+              } absolute left-1 top-1 h-5 w-5 transform rounded-full bg-white shadow-md transition`}
             ></div>
           </div>
         </div>

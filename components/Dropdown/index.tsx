@@ -1,83 +1,92 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
-import clsx from 'clsx';
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
 
 interface DropdownProps {
-  options: string[];
-  onSelect: (option: string) => void;
-  className?: string;
-  disable?: boolean;
-  placeholder?: string;
-  defaultSelected?: string;
+  label: string;
+  options: Array<{ label: string; value: string }>;
+  onSelect: (value: string) => void;
+  defaultValue?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
+  label,
   options,
   onSelect,
-  className = '',
-  disable = false,
-  placeholder = 'Select an option',
-  defaultSelected = '',
+  defaultValue,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(
-    defaultSelected || null,
-  );
+  const [selectedValue, setSelectedValue] = useState(defaultValue || '');
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleSelect = (option: string) => {
-    setSelectedOption(option);
-    onSelect(option);
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleSelect = (value: string) => {
+    setSelectedValue(value);
+    onSelect(value);
     setIsOpen(false);
   };
 
-  return (
-    <div
-      className={clsx(
-        'relative inline-block min-w-[200px] text-left',
-        className,
-      )}
-    >
-      <button
-        type="button"
-        className="flex w-full justify-between rounded-xl border border-black bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none disabled:opacity-50"
-        onClick={() => !disable && setIsOpen(!isOpen)}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        disabled={disable}
-      >
-        {selectedOption || placeholder}
-        {isOpen ? (
-          <ChevronUpIcon className="w-5" />
-        ) : (
-          <ChevronDownIcon className="w-5" />
-        )}
-      </button>
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-          >
-            <div className="max-h-[250px] overflow-y-scroll py-1">
-              {options.map((option) => (
-                <button
-                  key={option}
-                  onClick={() => handleSelect(option)}
-                  className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
-                  role="option"
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="relative inline-block w-full text-left" ref={dropdownRef}>
+      <div>
+        <button
+          type="button"
+          className="inline-flex w-full justify-between rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2"
+          id="menu-button"
+          aria-expanded={isOpen}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          {selectedValue
+            ? options.find((option) => option.value === selectedValue)?.label
+            : label}
+          {isOpen ? (
+            <ChevronUpIcon className="w-5" />
+          ) : (
+            <ChevronDownIcon className="w-5" />
+          )}
+        </button>
+      </div>
+
+      {isOpen && (
+        <div
+          className="absolute right-0 mt-2 w-56 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+        >
+          <div className="py-1" role="none">
+            {options.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => handleSelect(option.value)}
+                className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                role="menuitem"
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

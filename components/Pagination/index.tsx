@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import Button from '../Button';
+import Link from 'next/link';
 
 interface PaginationProps {
   currentPage: number;
@@ -18,49 +20,114 @@ const Pagination: React.FC<PaginationProps> = ({
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
+    // <nav
+    //   className={clsx('flex items-center justify-center space-x-3', className)}
+    // >
+    //   <Button
+    //     onClick={() => onPageChange(currentPage - 1)}
+    //     disabled={currentPage === 1}
+    //     className={clsx(
+    //       'flex h-6 items-center justify-between gap-2 rounded-md px-3 py-2 text-sm font-semibold',
+    //       currentPage === 1
+    //         ? 'cursor-not-allowed bg-gray-100 text-gray-500'
+    //         : 'border border-gray-300 bg-white text-black hover:border-black',
+    //     )}
+    //   >
+    //     Prev
+    //     <ChevronLeftIcon className="w-4" />
+    //   </Button>
+    //   {pages.map((page, index) => (
+    //     <div className="flex" key={index}>
+    //       <Button
+    //         variant="primary"
+    //         key={page}
+    //         onClick={() => onPageChange(page)}
+    //         className={clsx(
+    //           'rounded-xl py-3 text-center text-sm font-semibold text-gray-600',
+    //           page === currentPage
+    //             ? 'text-md bg-black text-white'
+    //             : 'border border-gray-300 bg-white text-black hover:bg-gray-300',
+    //         )}
+    //       >
+    //         {page}
+    //       </Button>
+    //     </div>
+    //   ))}
+    //   <Button
+    //     onClick={() => onPageChange(currentPage + 1)}
+    //     disabled={currentPage === totalPages}
+    //     className={clsx(
+    //       'flex items-center justify-between gap-2 rounded-md px-3 py-2 text-sm font-semibold',
+    //       currentPage === totalPages
+    //         ? 'cursor-not-allowed bg-gray-300'
+    //         : 'border border-gray-300 bg-white text-black hover:border-black',
+    //     )}
+    //   >
+    //     Next
+    //     <ChevronRightIcon className="w-4" />
+    //   </Button>
+    // </nav>
+
     <nav
-      className={clsx('flex items-center justify-center space-x-3', className)}
+      aria-label="pagination"
+      className="mx-auto my-4 flex w-full justify-center"
+      role="navigation"
     >
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className={clsx(
-          'flex items-center justify-between gap-2 rounded-md px-3 py-2 text-sm font-semibold',
-          currentPage === 1
-            ? 'cursor-not-allowed bg-gray-100 text-gray-500'
-            : 'border border-gray-300 bg-white text-black hover:border-black',
-        )}
-      >
-        Prev
-        <ChevronLeftIcon className="w-4" />
-      </button>
-      {pages.map((page) => (
-        <button
-          key={page}
-          onClick={() => onPageChange(page)}
-          className={clsx(
-            'min-w-[40px] rounded-md px-2 py-1 text-center text-gray-600',
-            page === currentPage
-              ? 'text-md bg-black text-white'
-              : 'border border-gray-300 bg-white text-black hover:bg-gray-300',
-          )}
-        >
-          {page}
-        </button>
-      ))}
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className={clsx(
-          'flex items-center justify-between gap-2 rounded-md px-3 py-2 text-sm font-semibold',
-          currentPage === totalPages
-            ? 'cursor-not-allowed bg-gray-300'
-            : 'border border-gray-300 bg-white text-black hover:border-black',
-        )}
-      >
-        Next
-        <ChevronRightIcon className="w-4" />
-      </button>
+      <ul className="flex flex-row items-center gap-1">
+        <li className={currentPage === 1 ? 'cursor-not-allowed' : ''}>
+          <button
+            onClick={() => onPageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={clsx(
+              'ring-offset-background  focus-visible:ring-ring hover:bg-accent hover:text-accent-foreground inline-flex h-10 items-center justify-center gap-1 whitespace-nowrap rounded-md bg-white px-4 py-2 pl-2.5 text-sm font-medium text-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+              currentPage === 1
+                ? 'cursor-not-allowed bg-gray-100 text-gray-500'
+                : ' bg-white text-black ',
+            )}
+            aria-label="Go to previous page"
+          >
+            <ChevronLeftIcon className="w-3" />
+            <span>Previous</span>
+          </button>
+        </li>
+
+        {pages &&
+          pages.map((page, index) => (
+            <li className="" key={index}>
+              <li className="">
+                <div
+                  aria-current="page"
+                  className={clsx(
+                    'ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-md border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+                    page === currentPage
+                      ? 'text-md bg-white text-black outline outline-1 outline-black'
+                      : 'border border-gray-300 bg-white text-black hover:bg-gray-300',
+                  )}
+                  onClick={() => onPageChange(page)}
+                >
+                  {page}
+                </div>
+              </li>
+            </li>
+          ))}
+
+        <li className={currentPage === totalPages ? 'cursor-not-allowed' : ''}>
+          <button
+            className={clsx(
+              'ring-offset-background focus-visible:ring-ring hover:bg-accent hover:text-accent-foreground inline-flex h-10 items-center justify-center gap-1 whitespace-nowrap rounded-md px-4 py-2 pl-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+              currentPage === totalPages
+                ? 'cursor-not-allowed bg-gray-100 text-gray-500 '
+                : ' bg-white text-black ',
+            )}
+            aria-label="Go to previous page"
+            disabled={currentPage === totalPages}
+            onClick={() => onPageChange(currentPage + 1)}
+          >
+            <span className="cursor-not-allowed">Next</span>
+            <ChevronRightIcon className="w-3" />
+          </button>
+        </li>
+      </ul>
     </nav>
   );
 };

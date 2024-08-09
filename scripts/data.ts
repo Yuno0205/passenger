@@ -82,6 +82,14 @@ export const unitData = [
   }
 ]
 
+export const unitConversion = [
+  { id: '1', item : "Coffee beans" , from: 'Kg', to: 'g', type: 'weight', ratio: 1000 },
+  { id: '2', item : "Coffee beans" , from: 'g', to: 'Kg', type: 'weight', ratio: 0.001 },
+  { id: '3', item : "Coffee beans" , from: 'l', to: 'ml', type: 'volume', ratio: 1000 },
+  { id: '4', item : "Coffee beans" , from: 'ml', to: 'l', type: 'volume', ratio: 0.001 },
+  { id: '5', item : "Coffee beans" , from: 'Kg', to: 'Bag', type: 'quantity', ratio: 1 }, 
+];
+
 export const ingredientData = [
   {
      id: 1,
@@ -191,59 +199,75 @@ lowstock : 50,
 
 export const employees: Employee[] = [
   {
-    name: "Alice Johnson",
-    role: "staff",
-    avatar: "https://example.com/avatars/alice.jpg",
+    id: '1',
+    name: 'Nguyen Van A',
+    email: 'nguyenvana@example.com',
+    role: 'admin',
+    avatar: 'https://example.com/avatars/1.jpg',
     status: true,
-    created_at: "2023-01-15",
-    monthlySalary: "11500000", // 11.5 triệu VND
-    bonus: "1000000",          // 1 triệu VND
+    created_at: '2023-01-01',
+    startDate: '2023-01-10',
+    monthlySalary: 10000000,
+    bonus: 2000000,
+    ratePerHour: 50000,
+    workHours: 160,
   },
   {
-    name: "Bob Smith",
-    role: "admin",
-    avatar: "https://example.com/avatars/bob.jpg",
+    id: '2',
+    name: 'Tran Thi B',
+    email: 'tranthib@example.com',
+    role: 'staff',
+    avatar: 'https://example.com/avatars/2.jpg',
     status: true,
-    created_at: "2023-03-22",
-    monthlySalary: "13800000", // 13.8 triệu VND
-    bonus: "1200000",          // 1.2 triệu VND
+    created_at: '2023-02-01',
+    startDate: '2023-02-15',
+    monthlySalary: 8000000,
+    bonus: 1500000,
+    ratePerHour: 45000,
+    workHours: 160,
   },
   {
-    name: "Charlie Brown",
-    role: "staff",
-    avatar: "https://example.com/avatars/charlie.jpg",
+    id: '3',
+    name: 'Le Van C',
+    email: 'levanc@example.com',
+    role: 'staff',
+    avatar: 'https://example.com/avatars/3.jpg',
     status: false,
-    created_at: "2023-05-10",
-    monthlySalary: "10500000", // 10.5 triệu VND
-    bonus: "900000",           // 900 nghìn VND
+    created_at: '2023-03-01',
+    startDate: '2023-03-20',
+    monthlySalary: 7500000,
+    bonus: 1000000,
+    ratePerHour: 42000,
+    workHours: 160,
   },
   {
-    name: "Diana Green",
-    role: "staff",
-    avatar: "https://example.com/avatars/diana.jpg",
+    id: '4',
+    name: 'Pham Thi D',
+    email: 'phamthid@example.com',
+    role: 'admin',
+    avatar: 'https://example.com/avatars/4.jpg',
     status: true,
-    created_at: "2023-07-30",
-    monthlySalary: "11000000", // 11 triệu VND
-    bonus: "950000",           // 950 nghìn VND
+    created_at: '2023-04-01',
+    startDate: '2023-04-10',
+    monthlySalary: 12000000,
+    bonus: 2500000,
+    ratePerHour: 60000,
+    workHours: 160,
   },
   {
-    name: "Edward Wilson",
-    role: "admin",
-    avatar: "https://example.com/avatars/edward.jpg",
+    id: '5',
+    name: 'Hoang Van E',
+    email: 'hoangvane@example.com',
+    role: 'staff',
+    avatar: 'https://example.com/avatars/5.jpg',
     status: true,
-    created_at: "2023-02-05",
-    monthlySalary: "12500000", // 12.5 triệu VND
-    bonus: "1100000",          // 1.1 triệu VND
-  },
-  {
-    name: "Fiona Martinez",
-    role: "staff",
-    avatar: "https://example.com/avatars/fiona.jpg",
-    status: false,
-    created_at: "2023-06-18",
-    monthlySalary: "12000000", // 12 triệu VND
-    bonus: "1000000",          // 1 triệu VND
-  },
+    created_at: '2023-05-01',
+    startDate: '2023-05-15',
+    monthlySalary: 8500000,
+    bonus: 1800000,
+    ratePerHour: 47000,
+    workHours: 160,
+  }
 ];
 
   

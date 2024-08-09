@@ -10,12 +10,24 @@ export interface Ingredient {
     status?: string;
   }
 
+
+  type Schedule = {
+    startTime: string;
+    endTime: string;
+  }
+
  export type Employee = {
+    id: string;
     name: string;
+    email: string;
     role: string;
     avatar: string;
     status: boolean;
     created_at: string;
-    monthlySalary: string;
-    bonus: string;
+    startDate: string;
+    monthlySalary: number;
+    bonus: number;
+    ratePerHour: number;
+    workHours: number;
+    schedule?: Schedule[];
   };
