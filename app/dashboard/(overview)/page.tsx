@@ -2,9 +2,6 @@
 
 import { lusitana } from '@/app/styles/fonts';
 
-import PayrollChart from '@/components/Chart/PayrollChart';
-import IngredientPieChart from '@/components/Chart/PieChart';
-
 export default async function Page() {
   return (
     <main>
