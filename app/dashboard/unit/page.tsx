@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/BreadCrumb';
 import Button from '@/components/Button';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Pagination from '@/components/Pagination';
+import ActionDropdown from '@/components/ActionDropdown';
 
 interface Unit {
   id: number;
@@ -51,12 +52,7 @@ export default function Units() {
       header: 'Actions',
       accessor: 'actions',
       render: (row: Unit) => (
-        <button
-          onClick={() => handleDeleteUnit(row.id)}
-          className="rounded bg-red-500 p-2 text-white shadow-md transition-colors duration-300 hover:bg-red-700"
-        >
-          Delete
-        </button>
+        <ActionDropdown onAdjust={() => {}} onDelete={() => {}} />
       ),
     },
   ];

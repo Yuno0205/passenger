@@ -37,7 +37,7 @@ const links: Link[] = [
       { childName: 'Ingredient', childLink: '/dashboard/inventory' },
       {
         childName: 'Add ingredient',
-        childLink: '/dashboard/inventory/ingredient',
+        childLink: '/dashboard/inventory/add',
       },
       { childName: 'Checking', childLink: '/dashboard/inventory/checking' },
     ],
@@ -46,10 +46,6 @@ const links: Link[] = [
     name: 'Categories',
     href: '/dashboard/categories',
     icon: SwatchIcon,
-    children: [
-      { childName: 'Categories', childLink: '/dashboard/categories' },
-      { childName: 'Unit', childLink: '/dashboard/categories/unit' },
-    ],
   },
   {
     name: 'Schedule',
@@ -60,8 +56,16 @@ const links: Link[] = [
       { childName: 'Shifts', childLink: '/dashboard/schedule/shifts' },
     ],
   },
-  { name: 'User', href: '/dashboard/user', icon: UserGroupIcon },
-  { name: 'Unit', href: '/dashboard/unit', icon: TableCellsIcon },
+  { name: 'User', href: '/dashboard/user/account', icon: UserGroupIcon },
+  {
+    name: 'Unit',
+    href: '/dashboard/unit',
+    icon: TableCellsIcon,
+    children: [
+      { childName: 'Unit', childLink: '/dashboard/unit' },
+      { childName: 'Conversion', childLink: '/dashboard/unit/conversion' },
+    ],
+  },
 ];
 
 export default function NavLinks() {
@@ -102,7 +106,11 @@ export default function NavLinks() {
                   <LinkIcon className="w-6" />
                   <p className="hidden md:block">{link.name}</p>
                 </div>
-                <ChevronDownIcon className="w-5" />
+                <ChevronDownIcon
+                  className={clsx('w-5 transition-transform', {
+                    'rotate-180': isSubmenuOpen,
+                  })}
+                />
               </div>
               {isSubmenuOpen && (
                 <ul className="ml-4 flex flex-col space-y-1">

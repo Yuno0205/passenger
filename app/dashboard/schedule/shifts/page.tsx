@@ -11,6 +11,7 @@ import Image from 'next/image';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import ShiftItem from '@/components/ShiftItem';
+import Breadcrumb from '@/components/BreadCrumb';
 
 const Shifts = () => {
   const [nextWeekDays, setNextWeekDays] = useState<string[]>([]);
@@ -106,6 +107,7 @@ const Shifts = () => {
   return (
     <div className="h-screen w-full">
       <div className="flex flex-col">
+        <Breadcrumb />
         <div className="mb-2 flex items-center justify-center">
           <div className="flex h-[50px] w-[350px] items-center justify-between rounded-full bg-gray-100">
             <div className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center rounded-full">
@@ -186,7 +188,7 @@ const Shifts = () => {
                             <div className="absolute left-0 top-12 z-10 w-48 rounded-md border bg-white shadow-lg">
                               <ul className="py-1">
                                 <li
-                                  className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  className="mb-2 flex cursor-pointer items-center justify-between gap-2 rounded-3xl bg-green-100 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-green-200"
                                   onClick={() =>
                                     handleShiftSelect(
                                       dayIndex,
@@ -195,10 +197,16 @@ const Shifts = () => {
                                     )
                                   }
                                 >
-                                  Morning
+                                  <div className="flex items-center gap-1">
+                                    <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                    Morning
+                                  </div>
+                                  <span className="text-green-600">
+                                    9h - 15h30
+                                  </span>
                                 </li>
                                 <li
-                                  className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  className="flex cursor-pointer items-center justify-center  gap-2 rounded-3xl bg-sky-100 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-sky-200"
                                   onClick={() =>
                                     handleShiftSelect(
                                       dayIndex,
@@ -207,6 +215,7 @@ const Shifts = () => {
                                     )
                                   }
                                 >
+                                  <div className="h-2 w-2 rounded-full bg-sky-500"></div>
                                   Custom
                                 </li>
                               </ul>
@@ -307,7 +316,7 @@ const Shifts = () => {
                             <div className="absolute left-0 top-12 z-10 w-48 rounded-md border bg-white shadow-lg">
                               <ul className="py-1">
                                 <li
-                                  className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  className="mb-2 flex cursor-pointer items-center justify-between gap-2 rounded-3xl bg-orange-100 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-orange-200"
                                   onClick={() =>
                                     handleShiftSelect(
                                       dayIndex,
@@ -316,18 +325,25 @@ const Shifts = () => {
                                     )
                                   }
                                 >
-                                  Evening
+                                  <div className="flex items-center gap-1">
+                                    <div className="h-2 w-2 rounded-full bg-orange-500"></div>
+                                    Evening
+                                  </div>
+                                  <span className="text-orange-600">
+                                    9h - 15h30
+                                  </span>
                                 </li>
                                 <li
-                                  className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  className="flex cursor-pointer items-center justify-center  gap-2 rounded-3xl bg-sky-100 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-sky-200"
                                   onClick={() =>
                                     handleShiftSelect(
                                       dayIndex,
                                       'custom',
-                                      'evening',
+                                      'morning',
                                     )
                                   }
                                 >
+                                  <div className="h-2 w-2 rounded-full bg-sky-500"></div>
                                   Custom
                                 </li>
                               </ul>
