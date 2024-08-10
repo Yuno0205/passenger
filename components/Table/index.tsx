@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 interface Column {
   header: string;
-  accessor: string;
+  accessor: any;
   render?: (row: any) => React.ReactNode;
   className?: string;
 }
