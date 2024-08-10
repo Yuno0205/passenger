@@ -11,11 +11,21 @@ const TimeFrame = ({ id, removeShiftItem }: any) => {
     hoursArray.push(formattedTime);
   }
 
+  console.log(hoursArray);
+
   return (
     <div className="mx-2 flex items-center justify-evenly gap-4 rounded-xl bg-gray-50 px-2 py-4">
-      <Dropdown onSelect={() => {}} options={hoursArray} />
+      <Dropdown
+        onSelect={() => {}}
+        label="Select from"
+        options={hoursArray.map((hour) => ({ label: hour, value: hour }))}
+      />
       <p>To</p>
-      <Dropdown onSelect={() => {}} options={hoursArray} />
+      <Dropdown
+        label="Select to"
+        onSelect={() => {}}
+        options={hoursArray.map((hour) => ({ label: hour, value: hour }))}
+      />
       <div
         className="cursor-pointer hover:text-red-500"
         onClick={() => removeShiftItem(id)}
