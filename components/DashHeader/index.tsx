@@ -1,8 +1,9 @@
 import {
   Bars3CenterLeftIcon,
+  BellIcon,
+  LanguageIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
-import { BellSnoozeIcon } from '@heroicons/react/24/solid';
 
 export default function DashHeader({
   onMenuClick,
@@ -34,12 +35,13 @@ export default function DashHeader({
           </div>
         </form>
       </div>
-      <div className="relative">
-        <BellSnoozeIcon
-          fill="#64748b"
+      <div className="relative flex gap-5">
+        <LanguageIcon width={25} />
+        <BellIcon
+          // fill="#64748b"
           color="gray-100"
-          width={30}
-          className="cursor-pointer hover:fill-black"
+          width={25}
+          className="cursor-pointer"
         />
         <div className="absolute right-1 top-0 z-10 h-2 w-2 rounded-full bg-red-500"></div>
       </div>

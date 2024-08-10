@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 interface Column {
   header: string;
-  accessor: string;
+  accessor: any;
   render?: (row: any) => React.ReactNode;
   className?: string;
 }
@@ -12,9 +12,15 @@ interface TableProps {
   columns: Column[];
   data: Record<string, any>[];
   className?: string;
+  checkbox?: boolean;
 }
 
-const Table: React.FC<TableProps> = ({ columns, data, className = '' }) => {
+const Table: React.FC<TableProps> = ({
+  columns,
+  data,
+  className = '',
+  checkbox,
+}) => {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
   const handleCheckboxChange = (rowIndex: number) => {
@@ -38,18 +44,23 @@ const Table: React.FC<TableProps> = ({ columns, data, className = '' }) => {
       <table className="min-w-full bg-white">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-              <input
-                type="checkbox"
-                onChange={handleSelectAllChange}
-                checked={selectedRows.length === data.length && data.length > 0}
-              />
-            </th>
+            {checkbox && (
+              <th className="px-6 py-3 text-left font-medium capitalize tracking-wider text-gray-500">
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAllChange}
+                  checked={
+                    selectedRows.length === data.length && data.length > 0
+                  }
+                  className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                />
+              </th>
+            )}
             {columns.map((column) => (
               <th
                 key={column.accessor}
                 className={clsx(
-                  'px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500',
+                  'px-6 py-4 text-left text-sm font-semibold capitalize tracking-wider text-gray-600',
                   column.className,
                 )}
                 scope="col"
@@ -65,18 +76,21 @@ const Table: React.FC<TableProps> = ({ columns, data, className = '' }) => {
               key={rowIndex}
               className={clsx('bg-white', { 'bg-gray-50': rowIndex % 2 === 0 })}
             >
-              <td className="border-b border-gray-300 px-6 py-4 text-sm font-semibold text-gray-700">
-                <input
-                  type="checkbox"
-                  checked={selectedRows.includes(rowIndex)}
-                  onChange={() => handleCheckboxChange(rowIndex)}
-                />
-              </td>
+              {checkbox && (
+                <td className="border-b border-gray-300 px-6 py-4 text-sm font-semibold text-gray-700">
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(rowIndex)}
+                    onChange={() => handleCheckboxChange(rowIndex)}
+                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                  />
+                </td>
+              )}
               {columns.map((column) => (
                 <td
                   key={column.accessor}
                   className={clsx(
-                    'border-b border-gray-300 px-6 py-4 text-sm font-semibold text-gray-700',
+                    'border-b border-gray-300 px-6 py-4 text-sm font-normal text-gray-700',
                     column.className,
                   )}
                 >

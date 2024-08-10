@@ -5,6 +5,7 @@ import { lusitana } from '@/app/styles/fonts';
 import ShiftItem from '@/components/TimeFrame';
 import SimpleToggle from '@/components/Toogle';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import Breadcrumb from '@/components/BreadCrumb';
 
 const Schedule = () => {
   const [shiftItems, setShiftItems] = useState<number[]>([]);
@@ -20,7 +21,7 @@ const Schedule = () => {
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
-        <h1 className={`${lusitana.className} text-2xl`}>Schedule</h1>
+        <Breadcrumb />
       </div>
 
       <div className="grid grid-cols-2 items-start gap-4 p-4">

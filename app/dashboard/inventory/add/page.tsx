@@ -116,8 +116,12 @@ const CategoryForm: React.FC = () => {
           <div className="ml-20 flex-1">
             <Dropdown
               onSelect={() => {}}
-              options={categoriesData.map((cate) => cate.name)}
-              className="w-full"
+              label="Category"
+              options={categoriesData.map((cate) => ({
+                label: cate.name,
+                value: cate.name,
+              }))}
+              // className="w-full"
             />
           </div>
         </div>
@@ -128,8 +132,12 @@ const CategoryForm: React.FC = () => {
           <div className="flex-1">
             <Dropdown
               onSelect={() => {}}
-              options={unitData.map((unitData) => unitData.unitName)}
-              className="w-full"
+              label="Unit"
+              options={unitData.map((unit) => ({
+                label: unit.unitName,
+                value: unit.unitName,
+              }))}
+              // className="w-full"
             />
           </div>
         </div>
