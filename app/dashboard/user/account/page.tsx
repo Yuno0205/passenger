@@ -1,23 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
 import Button from '@/components/Button';
-import {
-  EllipsisHorizontalIcon,
-  PlusIcon,
-  AdjustmentsHorizontalIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
-import Table from '@/components/Table';
 import Pagination from '@/components/Pagination';
-import MultiOptionFilter from '@/components/MultiOptionsFilter';
-import clsx from 'clsx';
+import Table from '@/components/Table';
+import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import { useState } from 'react';
 
+import ActionDropdown from '@/components/ActionDropdown';
+import Dropdown from '@/components/Dropdown';
 import adminImg from '@/public/images/3d-illustration-human-avatar-profile_23-2150671140.jpg';
 import { employees } from '@/scripts/data';
-import Breadcrumb from '@/components/BreadCrumb';
-import ActionDropdown from '@/components/ActionDropdown';
 
 const UserManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -111,11 +104,11 @@ const UserManagement = () => {
     <div className="flex flex-col overflow-x-auto p-4">
       {/* Table header */}
       <div className="mx-auto mb-5 w-full max-w-screen-xl">
-        <div className="relative bg-white dark:bg-gray-800 sm:rounded-lg">
+        <div className="relative bg-white  dark:bg-gray-800 sm:rounded-lg">
           <div className="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="flex w-full items-center gap-3">
-              <div className="flex w-full gap-2 md:w-1/3">
-                <form className="flex items-center">
+              <div className="flex w-full gap-2">
+                <form className="flex min-w-[250px] items-center">
                   <label htmlFor="simple-search" className="sr-only">
                     Search
                   </label>
@@ -127,65 +120,39 @@ const UserManagement = () => {
                       type="text"
                       id="simple-search"
                       className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                      placeholder="Search for users"
+                      placeholder="Search for inventory"
                       required
                     />
                   </div>
                 </form>
-                <div className="relative flex">
-                  <Button onClick={() => setIsShowFilter(!isShowFilter)}>
-                    Filter <AdjustmentsHorizontalIcon className="ml-2 w-5" />
-                  </Button>
-                  {isShowFilter && (
-                    <div
-                      className={clsx(
-                        'border-gray-2 absolute top-[60px] flex min-h-[100px] flex-col rounded-xl bg-white p-6 shadow-lg transition-all',
-                        isShowFilter ? 'hidden' : 'visible',
-                      )}
-                    >
-                      <div
-                        className={clsx(
-                          'flex max-h-[300px] w-[400px] flex-wrap gap-2 overflow-y-auto',
-                        )}
-                      >
-                        <MultiOptionFilter
-                          label="Roles"
-                          options={rolesOptions}
-                          selectedOptions={selectedRoles}
-                          onChange={setSelectedRoles}
-                          className="mb-4"
-                        />
-                        <MultiOptionFilter
-                          label="Status"
-                          options={statusOptions}
-                          selectedOptions={selectedStatuses}
-                          onChange={setSelectedStatuses}
-                          className="mb-4"
-                        />
-                      </div>
-                      <div className="flex justify-between p-2">
-                        <Button
-                          className="border-2 border-black bg-white text-black"
-                          style={{ color: 'black' }}
-                        >
-                          Clear
-                        </Button>
-                        <Button>Apply</Button>
-                      </div>
-                    </div>
-                  )}
-                </div>
+
+                <Dropdown
+                  type="checkbox"
+                  label="Role"
+                  onSelect={(value) => console.log(value)}
+                  options={[
+                    { label: 'Admin', value: 'admin' },
+                    { label: 'Staff', value: 'staff' },
+                  ]}
+                />
+
+                <Dropdown
+                  label="Status"
+                  onSelect={(value) => console.log(value)}
+                  options={[
+                    { label: 'Active', value: 'Active' },
+                    { label: 'Inactive', value: 'Inactive' },
+                  ]}
+                />
               </div>
             </div>
             <div className="flex w-full flex-shrink-0 flex-col items-stretch justify-end space-y-2 md:w-auto md:flex-row md:items-center md:space-x-3 md:space-y-0">
               <Button
-                onClick={() => {
-                  setIsModalOpen(true);
-                }}
-                className="rounded-md text-sm text-white"
+                // onClick={() => setIsAddUserModalOpen(true)}
+                className="flex rounded-md bg-black px-5 py-2.5 text-sm text-white"
               >
-                <PlusIcon className="mr-2 w-5" />
-                Add user
+                <PlusIcon className="mr-2 w-3" />
+                Add new
               </Button>
             </div>
           </div>

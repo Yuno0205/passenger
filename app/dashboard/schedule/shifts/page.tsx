@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import ShiftItem from '@/components/ShiftItem';
 import Breadcrumb from '@/components/BreadCrumb';
+import DatePicker from '@/components/DatePicker';
 
 const Shifts = () => {
   const [nextWeekDays, setNextWeekDays] = useState<string[]>([]);
@@ -104,6 +105,12 @@ const Shifts = () => {
 
   const timeOptions = Array.from({ length: 16 }, (_, i) => `${8 + i}:00`);
 
+  const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs | null>(null);
+
+  const handleDateChange = (date: dayjs.Dayjs | null) => {
+    setSelectedDate(date);
+    console.log('Selected Date:', date?.format('YYYY-MM-DD'));
+  };
   return (
     <div className="h-screen w-full">
       <div className="flex flex-col">
@@ -113,10 +120,17 @@ const Shifts = () => {
             <div className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center rounded-full">
               <ChevronLeftIcon className="w-5" />
             </div>
-            <div className="flex">
-              <span>May 8 - May 21 (2024)</span>
-              <CalendarIcon className="ml-3 w-5" />
+
+            {/* DatePicker */}
+            <div className="p-4">
+              <DatePicker onChange={handleDateChange} />
+              {selectedDate && (
+                <div className="mt-4">
+                  <p>Selected Date: {selectedDate.format('YYYY-MM-DD')}</p>
+                </div>
+              )}
             </div>
+
             <div className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center rounded-full bg-gray-200">
               <ChevronRightIcon className="w-5" />
             </div>

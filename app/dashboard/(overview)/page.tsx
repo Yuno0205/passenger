@@ -195,7 +195,7 @@ export default async function Page() {
             </div>
           </div>
           <div className="flex flex-col space-y-10">
-            <DailySalesLineChart />
+            {/* <DailySalesLineChart /> */}
 
             <IngredientTrendBarChart />
           </div>
