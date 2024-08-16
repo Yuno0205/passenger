@@ -15,8 +15,8 @@ const ShiftItem = ({ type, customTime, onDoubleClick }: ShiftItemProps) => {
         type === 'morning'
           ? 'bg-green-100'
           : type === 'evening'
-            ? 'bg-orange-100'
-            : 'bg-sky-100',
+          ? 'bg-orange-100'
+          : 'bg-sky-100',
       )}
       onDoubleClick={onDoubleClick}
     >
@@ -24,15 +24,15 @@ const ShiftItem = ({ type, customTime, onDoubleClick }: ShiftItemProps) => {
         {type === 'morning'
           ? '🟢 Morning'
           : type === 'evening'
-            ? '🟠 Evening'
-            : '🔵 Custom'}
+          ? '🟠 Evening'
+          : '🔵 Custom'}
       </span>
       <span>
         {type === 'morning'
           ? '9H - 15H30'
           : type === 'evening'
-            ? '15H - 23H'
-            : `${customTime?.replace(/:00/g, 'H')}`}
+          ? '15H - 23H'
+          : `${customTime?.replace(/:00/g, 'H')}`}
       </span>
     </div>
   );

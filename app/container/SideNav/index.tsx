@@ -9,7 +9,7 @@ import NavLinks from '@/components/NavLinks';
 export default function SideNav() {
   return (
     <div className="flex h-full flex-col border-r border-solid border-gray-300 px-5 py-2 md:px-4">
-      <div className="mb-2 flex h-20 flex-col items-center justify-start rounded-md p-4 md:h-40">
+      <div className=" mb-2 flex flex-col items-center justify-start rounded-md p-4 md:h-40">
         <div className="flex flex-col items-center justify-center">
           <div className="relative h-20 w-20 overflow-hidden">
             <Image
@@ -21,7 +21,7 @@ export default function SideNav() {
             />
           </div>
         </div>
-        <h1 className="py-2 text-2xl text-black">Nhật Hào</h1>
+        <h1 className="py-2 text-xl text-black md:text-2xl">Nhật Hào</h1>
       </div>
       <div
         className={clsx(

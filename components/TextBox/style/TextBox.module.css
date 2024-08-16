@@ -1,15 +1,15 @@
 .input {
-    border: 1px solid var(--color-gray-500);
-    display: flex;
-    align-items: center;
-    color: var(--color-gray-700);
-    background-color: white;
+  border: 1px solid var(--color-gray-500);
+  display: flex;
+  align-items: center;
+  color: var(--color-gray-700);
+  background-color: white;
 }
 
 .input.disabled {
-    pointer-events: none;
-    background-color: var(--color-gray-50);
-    color: var(--color-gray-400);
+  pointer-events: none;
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-400);
 }
 
 /* .input:focus-within:not(.invalid) {
@@ -18,83 +18,82 @@
 } */
 
 .input.invalid {
-    border-color: var(--color-red-400);
+  border-color: var(--color-red-400);
 }
 
 .input.small {
-    min-height: 32px;
-    border-radius: 6px;
-    font-size: 12px;
-    line-height: 16px;
+  min-height: 32px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .input.medium {
-    min-height: 40px;
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 24px;
+  min-height: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .input.large {
-    min-height: 48px;
-    border-radius: 8px;
-    font-size: 16px;
-    line-height: 28px;
+  min-height: 48px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 28px;
 }
 
 .input input {
-    border: none;
-    width: 100%;
-    border-radius: 0;
-    padding: 0 1em;
-    font-size: inherit;
-    background-color: transparent;
+  border: none;
+  width: 100%;
+  border-radius: 0;
+  padding: 0 1em;
+  font-size: inherit;
+  background-color: transparent;
 }
 
 .input input:focus {
-    outline: none;
+  outline: none;
 }
 
 .input input:placeholder-shown {
 }
 
 .input .addon {
-    color: var(--color-gray-700);
-    border: inherit;
-    background-color: var(--color-gray-100);
-    min-height: 100%;
-    align-self: stretch;
+  color: var(--color-gray-700);
+  border: inherit;
+  background-color: var(--color-gray-100);
+  min-height: 100%;
+  align-self: stretch;
 
-    padding: 0 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 0 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input .addonBefore {
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
 
-    margin: -1px 0 -1px -1px; /* border width */
-    border-right: 1px solid var(--color-gray-300);
+  margin: -1px 0 -1px -1px; /* border width */
+  border-right: 1px solid var(--color-gray-300);
 }
 
 .input .addonAfter {
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
 
-    margin: -1px -1px -1px 0; /* border width */
-    border-left: 1px solid var(--color-gray-300);
+  margin: -1px -1px -1px 0; /* border width */
+  border-left: 1px solid var(--color-gray-300);
 }
 
 .input .iconBefore {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 .input .iconAfter {
-    padding-right: 1em;
+  padding-right: 1em;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
-

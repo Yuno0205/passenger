@@ -82,7 +82,7 @@ export default function NavLinks() {
   };
 
   return (
-    <nav className="flex flex-col space-y-2">
+    <nav className="flex w-full flex-col space-y-2">
       {links.map((link, index) => {
         const LinkIcon = link.icon;
         const isSubmenuOpen = openSubmenus[index];
@@ -104,7 +104,7 @@ export default function NavLinks() {
               >
                 <div className="flex items-center gap-2">
                   <LinkIcon className="w-6" />
-                  <p className="hidden md:block">{link.name}</p>
+                  <p>{link.name}</p>
                 </div>
                 <ChevronDownIcon
                   className={clsx('w-5 transition-transform', {
@@ -149,7 +149,7 @@ export default function NavLinks() {
           >
             <div className="flex items-center gap-2">
               <LinkIcon className="w-6" />
-              <p className="hidden md:block">{link.name}</p>
+              <p>{link.name}</p>
             </div>
           </Link>
         );

@@ -21,7 +21,9 @@ const SingleLevelCategoryRow: React.FC<SingleLevelCategoryRowProps> = ({
         <span>{featured ? '✅' : '❌'}</span>
         <span>{products}</span>
         <span
-          className={`text-sm ${status === 'Active' ? 'text-green-500' : 'text-red-500'}`}
+          className={`text-sm ${
+            status === 'Active' ? 'text-green-500' : 'text-red-500'
+          }`}
         >
           {status}
         </span>

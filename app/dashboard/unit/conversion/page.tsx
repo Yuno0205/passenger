@@ -6,7 +6,6 @@ import Dropdown from '@/components/Dropdown';
 import Pagination from '@/components/Pagination';
 import SelectionSearch from '@/components/SelectionSearch';
 import Table from '@/components/Table';
-import TableRow from '@/components/TableRow';
 import Textbox from '@/components/TextBox';
 import { ingredientData, unitConversion, unitData } from '@/scripts/data';
 import { ArrowLongRightIcon, PlusIcon } from '@heroicons/react/24/outline';
@@ -85,7 +84,7 @@ const CurrencyConverter: React.FC = () => {
             options={unitData.map((unit) => {
               return { label: unit.unitName, value: unit.unitName };
             })}
-            onSelect={setDefaultUnit}
+            onSelect={() => {}}
             defaultValue={'hào'}
           />
         </div>

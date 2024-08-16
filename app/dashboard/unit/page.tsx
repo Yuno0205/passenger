@@ -4,9 +4,10 @@ import Table from '@/components/Table';
 import 'tailwindcss/tailwind.css';
 import Breadcrumb from '@/components/BreadCrumb';
 import Button from '@/components/Button';
-import { PlusIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline';
 import Pagination from '@/components/Pagination';
 import ActionDropdown from '@/components/ActionDropdown';
+import Dropdown from '@/components/Dropdown';
 
 interface Unit {
   id: number;
@@ -66,40 +67,55 @@ export default function Units() {
         <Breadcrumb />
       </div>
 
-      <div className="mb-8 rounded-lg bg-gray-100 p-6 shadow-lg">
-        <div className="mb-4 flex flex-col gap-4 md:flex-row">
-          <input
-            type="text"
-            placeholder="Unit name"
-            value={newUnit.name}
-            onChange={(e) => setNewUnit({ ...newUnit, name: e.target.value })}
-            className="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 md:w-1/3"
-          />
-          <input
-            type="text"
-            placeholder="Abbreviation"
-            value={newUnit.abbreviation}
-            onChange={(e) =>
-              setNewUnit({ ...newUnit, abbreviation: e.target.value })
-            }
-            className="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 md:w-1/3"
-          />
-          {/* <select
-            value={newUnit.type}
-            onChange={(e) => setNewUnit({ ...newUnit, type: e.target.value })}
-            className="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 md:w-1/3"
-          >
-            <option value="Weight">Weight</option>
-            <option value="Volume">Volume</option>
-            <option value="Quantity">Quantity</option>
-            <option value="Others">Others</option>
-          </select> */}
-          <Button
-            onClick={handleAddUnit}
-            className="rounded-lg bg-blue-600 p-3 text-white shadow-md transition-colors duration-300 hover:bg-blue-700"
-          >
-            Add <PlusIcon className="w-5" />
-          </Button>
+      <div className="mx-auto mb-5 w-full max-w-screen-xl">
+        <div className="relative bg-white  dark:bg-gray-800 sm:rounded-lg">
+          <div className="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
+            <div className="flex w-full items-center gap-3">
+              <div className="flex w-full gap-2">
+                <form className="flex min-w-[250px] items-center">
+                  <label htmlFor="simple-search" className="sr-only">
+                    Search
+                  </label>
+                  <div className="relative w-full">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                      <MagnifyingGlassIcon className="w-5" />
+                    </div>
+                    <input
+                      type="text"
+                      id="simple-search"
+                      className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                      placeholder="Search... "
+                      required
+                    />
+                  </div>
+                </form>
+
+                <Dropdown
+                  type="checkbox"
+                  label="Abbreviation"
+                  onSelect={(value) => console.log(value)}
+                  options={[
+                    { label: 'kg', value: 'kg' },
+                    { label: 'g', value: 'g' },
+                    { label: 'ml', value: 'ml' },
+                    { label: 'l', value: 'l' },
+                    { label: 'item', value: 'item' },
+                    { label: 'pack', value: 'pack' },
+                    { label: 'cup', value: 'cup' },
+                  ]}
+                />
+              </div>
+            </div>
+            <div className="flex w-full flex-shrink-0 flex-col items-stretch justify-end space-y-2 md:w-auto md:flex-row md:items-center md:space-x-3 md:space-y-0">
+              <Button
+                // onClick={() => setIsAddUserModalOpen(true)}
+                className="flex rounded-md bg-black px-5 py-2.5 text-sm text-white"
+              >
+                <PlusIcon className="mr-2 w-3" />
+                Add new
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
